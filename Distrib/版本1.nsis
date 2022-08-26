@@ -1,0 +1,37 @@
+
+; 使用 Modern UI
+!include "MUI2.nsh"
+
+; 文件名
+Name "计算器_1.0"
+OutFile "计算器.exe"
+
+; 默认安装路径
+InstallDir "d:\FQLCalculator"
+
+; 安装页
+!insertmacro MUI_PAGE_LICENSE "License.txt"
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
+
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
+
+
+; 语言
+!insertmacro MUI_LANGUAGE "SimpChinese"
+
+; 安装 sections
+
+Section "计算器软件"
+
+SetOutPath $INSTDIR
+File "..\bin\Release\netcoreapp3.1\FQLCalculator.dll"
+File "..\bin\Release\netcoreapp3.1\FQLCalculator.exe"
+
+SetOutPath $INSTDIR
+CreateShortCut "$DESKTOP\计算器软件.lnk" $INSTDIR\FQLCalculator.exe
+
+SectionEnd
